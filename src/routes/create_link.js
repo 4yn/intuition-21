@@ -69,6 +69,12 @@ export async function post(req, res, next) {
 
 	const { slug } = req.params;
 
+    console.log(req)
+    console.log("BODY")
+    console.log(req.body)
+    console.log("QUERY")
+    console.log(req.query)
+
     res.writeHead(200, {
         'Content-Type': 'application/json'
     });

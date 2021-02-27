@@ -21,6 +21,10 @@
 
 <svelte:head>
 	<title>{link.title}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={link.title}>
+    <meta property="og:description" content={link.body}>
+    <meta property="og:image" content={link.thumbnail_link}>
 </svelte:head>
 
 <div class="content">

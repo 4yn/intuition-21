@@ -151,6 +151,11 @@
 
 <svelte:head>
 	<title>SUS URL Shortener</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://p.ress.me:3000/">
+    <meta property="og:title" content="SUS URL Shortener | Link Disguiser">
+    <meta property="og:description" content="This may surprise you...">
+    <meta property="og:image" content="http://p.ress.me:3000/logo_nobg_small.png">
 </svelte:head>
 
 <img src="logo_nobg.png" alt="background image" />

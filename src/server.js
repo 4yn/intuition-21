@@ -1,17 +1,46 @@
 import sirv from 'sirv';
-import polka from 'polka';
+import express from 'polka';
 import compression from 'compression';
 import * as sapper from '@sapper/server';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-polka() // You can also use Express
+var session = require('express-session')
+
+express() // You can also use Express
 	.use(
+		session({secret: 'ssshhhhh'}),
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
-		sapper.middleware()
+		sapper.middleware({})
 	)
 	.listen(PORT, err => {
 		if (err) console.log('error', err);
 	});
+/*
+
+const app = express()
+ 
+// Configures the express session.
+app.use(session({secret: 'ssshhhhh'}));
+ 
+// Setting default values and for debugging purposes
+app.use(function(req, res, next) {
+    console.log(req.session.user);
+    console.log(req.session.refresh_token);
+    if (typeof req.session.user === 'undefined') {
+        req.session.user = false;
+    }
+    next()
+})
+ 
+// Initiates Sapper and adds the session variable to the Store.
+app.use(
+    sapper.middleware({
+        session: (req, res) => ({
+            user: req.session.user
+        })
+    })
+)
+*/

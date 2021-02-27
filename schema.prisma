@@ -27,6 +27,7 @@ model Link {
   tl3 String?
   tl4 String?
   tl5 String?
+  creator String?
   owner User? @relation(fields: [ownerId], references: [id])
   ownerId Int?
 }

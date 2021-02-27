@@ -3,7 +3,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // A `main` function so that you can use async/await
-async function createLink(s) {
+async function createLink(s, sid) {
     // ... you will write your Prisma Client queries here
     console.log("CREATING LINK IN  DB")
 
@@ -18,6 +18,11 @@ async function createLink(s) {
             thumbnail_link: s.thumbnail_link,
             routing: s.routing,
             tl1: s.tl1,
+            tl2: s.tl2,
+            tl3: s.tl3,
+            tl4: s.tl4,
+            tl5: s.tl5,
+            creator: sid
         }
     });
     console.log("LINK ADDED TO DB")
@@ -40,7 +45,7 @@ export async function post(req, res, next) {
         'Content-Type': 'application/json'
     });
 
-    const msg = await createLink(upd).then((result) => {
+    const msg = await createLink(upd, req.sessionID).then((result) => {
         return result;
     }).catch(e => {
         throw e

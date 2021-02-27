@@ -117,6 +117,7 @@ export async function get(req, res, next) {
 				lena += i;
 				break;
 			}
+			if (i == 5) lena += 5;
 		}
 
 		if (msg.routing=="CYCLE"){
@@ -124,7 +125,7 @@ export async function get(req, res, next) {
 			k = k%lena;
 			if (k != 0) msg.map_url=msg['tl'+k.toString()];
 		} else if (msg.routing=="RANDOM"){
-			var k = Math.getRandomInt(lena);
+			var k = getRandomInt(lena);
 			if (k != 0) msg.map_url=msg['tl'+k.toString()];
 		} else {
 			var k = tt.length

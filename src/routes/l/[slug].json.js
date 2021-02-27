@@ -10,6 +10,10 @@ function getUrl(u){
 	}
 }
 
+function getRandomInt(z){
+	return Math.floor(Math.random()*Math.floor(z))
+}
+
 async function getUrlDB(u) {
 
 	u = getUrl(u);
@@ -107,6 +111,31 @@ export async function get(req, res, next) {
 			await prisma.$disconnect()
 		})
 
+		var lena = 1
+		for (let i = 1; i <= 5; i++){
+			if (msg['tl'+i.toString()] == null){
+				lena += i;
+				break;
+			}
+		}
+
+		if (msg.routing=="CYCLE"){
+			var k = tt.length;
+			k = k%lena;
+			if (k != 0) msg.map_url=msg['tl'+k.toString()];
+		} else if (msg.routing=="RANDOM"){
+			var k = Math.getRandomInt(lena);
+			if (k != 0) msg.map_url=msg['tl'+k.toString()];
+		} else {
+			var k = tt.length
+			if (k >= lena) k = lena - 1;
+			if (k != 0) msg.map_url=msg['tl'+k.toString()];
+		}
+
+		console.log("GOING TO REDIRECT")
+		console.log(msg.map_url)
+		console.log("VISITED FOR THE " + (tt.length).toString())
+
 		res.writeHead(200, {
 			'Content-Type': 'application/json'
 		});
@@ -117,8 +146,8 @@ export async function get(req, res, next) {
 		res.end(JSON.stringify({
 			message: "Visited " + msg.map_url + " A TOTAL OF " + (tt.length).toString()
 		}));
-		*/
 
 		//res.end(lookup.get(slug));
+		*/
 	}
 }

@@ -16,7 +16,7 @@
 	export let link;
 	import { onMount } from 'svelte';
     import { goto } from '@sapper/app';
-	onMount(() => goto('https://www.youtube.com/watch?v=dQw4w9WgXcQ'));
+	onMount(() => goto(link.map_url));
 </script>
 
 <svelte:head>

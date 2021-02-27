@@ -1,3 +1,6 @@
+command to run before setting up the db is
+npx prisma generate
+
 # sapper-template
 
 The default template for setting up a [Sapper](https://github.com/sveltejs/sapper) project. Can use either Rollup or webpack as bundler.

@@ -1,52 +1,31 @@
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = "file:./data.db"
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
-}
-
 model User {
   id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  session String
+  name String?
 }
 
 model Link {
   id    Int     @id @default(autoincrement())
   url String  @unique
-  owner String
   map_url String
   title String
   body String
   thumbnail_link String
   routing String
   tl1 String
-  tl2 String
-  tl3 String
-  tl4 String
-  tl5 String
-}
-
-model Suser {
-  id    Int     @id @default(autoincrement())
-  session String
-  url String  @unique
-}
-
-model Visit {
-  id    Int     @id @default(autoincrement())
-  suser Suser
-  link Link
+  tl2 String?
+  tl3 String?
+  tl4 String?
+  tl5 String?
+  owner User? @relation(fields: [ownerId], references: [id])
+  ownerId Int?
 }

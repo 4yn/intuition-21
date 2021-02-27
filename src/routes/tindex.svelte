@@ -1,5 +1,6 @@
 <script>
     import { link } from "./store.js";
+    let errorTag = { showError: false };
 
     function toUrlQuery(obj){
         var str = "?"
@@ -13,30 +14,48 @@
         return str;
     }
 
-    function validate(){
-        console.log("FORM IS BEING SUBMITTED")
-        console.log($link)
+    async function validate(){
+
+        console.log("PREPARING FORM FOR SUBMISSION")
         console.log(JSON.stringify($link))
-        fetch('/create_link' + toUrlQuery($link), {
-            method: 'POST',
-            body: JSON.stringify($link),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-            })
-            .then(r => {
-            r.json()
-                .then(function(result) {
-                    console.log("IN THEN")
-                    console.log(result)
-                // The data is posted: do something with the result...
-                })
-            })
-            .catch(err => {
+
+        //CHECKING EXISTENCE OF URL
+        const obj = await fetch('/checkUrlExist?url=' + ($link.url).toString())
+        .then((response) => response.json())
+        .catch(err => {
             // POST error: do something...
             console.log('POST error', err.message)
-            }
-        )
+        })
+
+        if (obj.message == null || (!("url" in obj.message))){
+            errorTag.showError=false;
+            console.log("URL DOES NOT EXIST, PROCEEDING TO ADD IT IN")
+            console.log('/create_link' + toUrlQuery($link))
+            fetch('/create_link' + toUrlQuery($link), {
+                method: 'POST',
+                body: JSON.stringify($link),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                })
+                .then(r => {
+                r.json()
+                    .then(function(result) {
+                        console.log("IN THEN")
+                        console.log(result)
+                    // The data is posted: do something with the result...
+                    })
+                })
+                .catch(err => {
+                // POST error: do something...
+                console.log('POST error', err.message)
+                }
+            )
+        } else {
+            console.log("URL ALREADY EXIST!")
+            console.log("PRINT ERROR MESSAGE")
+            errorTag.showError=true;
+        }
     }
 </script>
 
@@ -77,6 +96,10 @@
         display: grid;
         grid-template-columns: 20% 80%;
         grid-column-gap: 10px;
+    }
+
+    .error {
+        color: purple,
     }
 </style>
 
@@ -130,6 +153,13 @@
         Press some more
     </button>
 </form>
+
+{#if errorTag.showError}
+    <h5 class="error">
+        URL ALREADY EXISTS
+    </h5>
+{/if}
+
 <p>{JSON.stringify($link, 0, 2)}</p>
 
 <br/>

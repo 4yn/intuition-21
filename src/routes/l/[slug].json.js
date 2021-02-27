@@ -107,13 +107,17 @@ export async function get(req, res, next) {
 			await prisma.$disconnect()
 		})
 
-		res.writeHead(201, {
+		res.writeHead(200, {
 			'Content-Type': 'application/json'
 		});
 
+		res.end(JSON.stringify(msg));
+
+		/*
 		res.end(JSON.stringify({
 			message: "Visited " + msg.map_url + " A TOTAL OF " + (tt.length).toString()
 		}));
+		*/
 
 		//res.end(lookup.get(slug));
 	}

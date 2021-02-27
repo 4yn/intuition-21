@@ -29,13 +29,12 @@ export async function post(req, res, next) {
 
 	const { slug } = req.params;
 
+    console.log("BODYYYY")
+    console.log(req.body)
+
 	// Check DB for link redirecting instructions and user traffic
     
-    const upd = req.query;
-
-    for (var i in upd){
-        console.log(i.toString() + " : " + req.query[i].toString())
-    }
+    const upd = req.body;
 
     res.writeHead(200, {
         'Content-Type': 'application/json'

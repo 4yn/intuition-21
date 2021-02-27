@@ -31,7 +31,9 @@
             errorTag.showError=false;
             console.log("URL DOES NOT EXIST, PROCEEDING TO ADD IT IN")
             console.log('/create_link' + toUrlQuery($link))
-            fetch('/create_link' + toUrlQuery($link), {
+            console.log("BODY HERE SVELTE")
+            console.log(JSON.stringify($link))
+            fetch('/create_link', {
                 method: 'POST',
                 body: JSON.stringify($link),
                 headers: {

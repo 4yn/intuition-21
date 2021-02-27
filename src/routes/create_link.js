@@ -73,6 +73,7 @@ export async function post(req, res, next) {
         'Content-Type': 'application/json'
     });
 
+    /*
     const msg = await createLink(slug).then((result) => {
         return result;
     }).catch(e => {
@@ -81,6 +82,7 @@ export async function post(req, res, next) {
     .finally(async () => {
         await prisma.$disconnect()
     })
+    */
 
     res.end(JSON.stringify({
         message: `Link not found`

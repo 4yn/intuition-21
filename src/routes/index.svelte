@@ -1,5 +1,35 @@
 <script>
 	import successkid from 'images/successkid.jpg';
+	const { PrismaClient } = require('@prisma/client')
+
+	const prisma = new PrismaClient()
+
+	// A `main` function so that you can use async/await
+	async function main() {
+	// ... you will write your Prisma Client queries here
+	const allUsers = await prisma.user.findMany()
+	console.log(allUsers)
+
+
+	const allUsers2 = await prisma.user.findMany({
+
+		include: { posts: true },
+
+	})
+
+	// use `console.dir` to print nested objects
+
+	console.dir(allUsers2, { depth: null })
+	}
+
+	main()
+	.catch(e => {
+		throw e
+	})
+	.finally(async () => {
+		await prisma.$disconnect()
+	})
+
 </script>
 
 <style>

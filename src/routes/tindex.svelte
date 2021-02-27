@@ -152,7 +152,7 @@
     <input type="text" bind:value={$link.tl5} />
 
     <button type="submit">
-        Press some more
+        Generate URL
     </button>
 </form>
 
@@ -162,8 +162,9 @@
     </h5>
 {/if}
 
+<!--
 <p>{JSON.stringify($link, 0, 2)}</p>
-
+-->
 <br/>
 
 <h2>

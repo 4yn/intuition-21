@@ -37,7 +37,7 @@ export async function get(req, res, next) {
 		await prisma.$disconnect()
 	})
 
-    var thisdict = {};
+    var thisarr = [];
 
     for (var i = 0; i < tt.length; i++){
         const ww = await getNum(tt[i].url)
@@ -46,13 +46,13 @@ export async function get(req, res, next) {
         .finally(async()=>{
             await prisma.$disconnect()
         });
-        thisdict[tt[i].url] = ww;
+        thisarr.push({"url": tt[i].url, "view": ww});
     }
 
     res.writeHead(200, {
         'Content-Type': 'application/json'
     });
 
-    res.end(JSON.stringify(thisdict));
+    res.end(JSON.stringify(thisarr));
 
 }

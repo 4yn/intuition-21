@@ -1,6 +1,7 @@
 <script>
     import { link } from "./store.js";
     let errorTag = { showError: false };
+    let traffic = [];
 
     function toUrlQuery(obj){
         var str = "?"
@@ -58,7 +59,22 @@
             console.log("PRINT ERROR MESSAGE")
             errorTag.showError=true;
         }
+        getUserTraffic()
     }
+
+    async function getUserTraffic(){
+
+        //CHECKING EXISTENCE OF URL
+        const obj = await fetch('/userTraffic')
+        .then((response) => response.json())
+        .catch(err => {
+            console.log(err.message)
+        })
+        traffic = obj;
+    }
+
+    getUserTraffic()
+
 </script>
 
 <style>
@@ -172,7 +188,13 @@
 </h2>
 
 <!-- List of previous links + traffic to links -->
-
+<ul>
+	{#each traffic as { url, view }}
+		<li>
+			{url}: {view}
+		</li>
+	{/each}
+</ul>
 <br/>
 
 <footer>

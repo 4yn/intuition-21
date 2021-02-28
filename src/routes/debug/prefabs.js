@@ -26,6 +26,14 @@ const data = [
         "creator": "1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"
     },
     {
+        "url": "gpay-bonus",
+        "map_url": "https://p.ress.me/explain-haha",
+        "title": "The huat pals party isn't over yet!",
+        "body": "CNY isn't over until the huat pals say so! Invite friends to google pay for one last chance at the $88.88 SGD prize! Two days left only!", "thumbnail_link": "https://i2.wp.com/sethisfy.com/wp-content/uploads/2021/02/bbloh.jpg?w=1200&ssl=1",
+        "routing": "STOP", "tl1": "", "tl2": "", "tl3": "", "tl4": "", "tl5": "",
+        "creator": "1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"
+    },
+    {
         "url": "nitro-eastco2412",
         "map_url": "https://www.youtube.com/watch?v=Tt7bzxurJ1I",
         "title": "Claim your Discord Nitro gift, expiring in 24 hours",

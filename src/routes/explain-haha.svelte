@@ -16,6 +16,8 @@
 <img src="logo_nobg.png" alt="background image" />
 <h1>Make suspicious links!</h1>
 
+<h2>Wait a second, this isn't Huat Pals?</h2>
+
 <h2>What is going on here?</h2>
 
 <p>

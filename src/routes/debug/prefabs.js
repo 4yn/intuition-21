@@ -26,13 +26,27 @@ const data = [
         "creator": "1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"
     },
     {
-        "url":"nitro-eastco2412",
-        "map_url":"https://www.youtube.com/watch?v=Tt7bzxurJ1I",
-        "title":"Claim your Discord Nitro gift, expiring in 24 hours",
-        "body":"You got a gift from EastCoastPlan#2412. Claim before the gift expires",
-        "thumbnail_link":"https://discordgift.site/logo.png",
-        "routing":"STOP","tl1":"","tl2":"","tl3":"","tl4":"","tl5":"",
-        "creator":"1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"}
+        "url": "nitro-eastco2412",
+        "map_url": "https://www.youtube.com/watch?v=Tt7bzxurJ1I",
+        "title": "Claim your Discord Nitro gift, expiring in 24 hours",
+        "body": "You got a gift from EastCoastPlan#2412. Claim before the gift expires",
+        "thumbnail_link": "https://discordgift.site/logo.png",
+        "routing": "STOP", "tl1": "", "tl2": "", "tl3": "", "tl4": "", "tl5": "",
+        "creator": "1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"
+    },
+    {
+        "url": "demo-tour",
+        "map_url": "https://p.ress.me/",
+        "title": "Try out the SUS URL Shortener",
+        "body": "Click on this link a bunch of times. You'll go different places each time.",
+        "thumbnail_link": "https://p.ress.me/logo_nobg.png",
+        "routing": "CYCLE",
+        "tl1": "https://p.ress.me/explain",
+        "tl2": "https://devpost.com/software/sus-url-shortener",
+        "tl3": "https://www.youtube.com/watch?v=GJDNkVDGM_s",
+        "tl4": "", "tl5": "",
+        "creator": "giUG_Q7kGg8W58H0mP1qjMow1SeQhQin"
+    }
 ]
 
 async function isLinkTaken(url) {

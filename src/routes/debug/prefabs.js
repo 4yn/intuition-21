@@ -16,7 +16,23 @@ const data = [
         "tl4": "https://www.youtube.com/watch?v=mrbEKl0M3wQ",
         "tl5": "https://www.youtube.com/watch?v=JCQVnSOFqfM",
         "creator": "_q8Et0IXdFWpjzf9Mdc-J7E9977hDzaj",
-    }
+    },
+    {
+        "url": "gpay-last-chance",
+        "map_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "title": "The huat pals party isn't over yet!",
+        "body": "CNY isn't over until the huat pals say so! Invite friends to google pay for one last chance at the $88.88 SGD prize! Two days left only!", "thumbnail_link": "https://i2.wp.com/sethisfy.com/wp-content/uploads/2021/02/bbloh.jpg?w=1200&ssl=1",
+        "routing": "STOP", "tl1": "", "tl2": "", "tl3": "", "tl4": "", "tl5": "",
+        "creator": "1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"
+    },
+    {
+        "url":"nitro-eastco2412",
+        "map_url":"https://www.youtube.com/watch?v=Tt7bzxurJ1I",
+        "title":"Claim your Discord Nitro gift, expiring in 24 hours",
+        "body":"You got a gift from EastCoastPlan#2412. Claim before the gift expires",
+        "thumbnail_link":"https://discordgift.site/logo.png",
+        "routing":"STOP","tl1":"","tl2":"","tl3":"","tl4":"","tl5":"",
+        "creator":"1FHZUiUJSeuBpnrD6TqD1DEumqbjkvWq"}
 ]
 
 async function isLinkTaken(url) {

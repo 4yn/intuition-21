@@ -123,9 +123,12 @@
 </ul>
 
 <p>
-    Take a look at our <a href="https://github.com/4yn/intuition-21">Github</a> and 
+    Take a look at our <a href="https://github.com/4yn/intuition-21">Github</a>
+    and
     <a href="https://devpost.com/software/sus-url-shortener">Devpost</a>
 </p>
+
+<p><a href="/explain">Find out how it works</a></p>
 
 <br />
 

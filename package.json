@@ -3,6 +3,7 @@
   "description": "SUS Link Shortener",
   "version": "0.0.1",
   "scripts": {
+    "migrate": "npx prisma generate && npx prisma migrate dev --preview-feature",
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",

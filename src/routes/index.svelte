@@ -284,7 +284,7 @@
                 <span
                     class="link-copy"
                     on:click={() => {
-                        copyToClipboard(`htttps://p.ress.me/l/${url}`);
+                        copyToClipboard(`https://p.ress.me/l/${url}`);
                     }}>https://p.ress.me/l/{url}</span
                 >: {view} view{view === 1 ? "" : "s"}
             </li>

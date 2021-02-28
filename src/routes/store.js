@@ -4,8 +4,8 @@ import { writable } from 'svelte/store';
 export const link = writable({
     url: "suslink",
     map_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    title: "SEEMS SUS",
-    body: "you are in for a surprise...",
+    title: "Totally not sus",
+    body: "You are in for a surprise...",
     thumbnail_link: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/03-the-joker-w1200-h630-1562679871.jpg",
     routing: "STOP",
     tl1: "https://www.youtube.com/watch?v=s3Q80mk7bxE",

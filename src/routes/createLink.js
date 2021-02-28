@@ -54,6 +54,16 @@ export async function post(req, res, next) {
     // new link data
     const newLinkData = req.body;
     try {
+        for (let field of ['map_url', 'body', 'title', 'thumbnail_link', 'routing', 'tl1', 'tl2', 'tl3', 'tl4', 'tl5']) {
+            if (!!newLinkData[field]) {
+                if (typeof newLinkData[field] !== "string") {
+                    throw new Error(`Unknown data in field ${field}`)
+                } else if (newLinkData[field].length > 300) {
+                    throw new Error(`Field ${field} is too long`)
+                }
+            }
+        }
+
         let newUrl = generateSlug(8);
         while (await isLinkTaken(newUrl)) {
             newUrl = generateSlug(8);

@@ -13,7 +13,7 @@
     />
 </svelte:head>
 
-<img src="logo_nobg.png" alt="background image" />
+<img src="logo_nobg.png" alt="background" />
 <h1>Make suspicious links!</h1>
 
 <h2>Wait a second, this isn't Huat Pals?</h2>
@@ -36,7 +36,7 @@
     helps push this &#39;rich-information&#39; closer to the user.
 </p>
 
-<img src="troll_1.png" class="troll" alt="background image" />
+<img src="troll_1.png" class="troll" alt="background" />
 
 <p>
     We decided to create a link shortener website that lets you put your own
@@ -48,7 +48,7 @@
     of social media, and do the navigation via inline javascript instead.
 </p>
 
-<img src="troll_2.png" class="troll" alt="background image" />
+<img src="troll_2.png" class="troll" alt="background" />
 
 <p>All this just to mislead people!</p>
 <p>

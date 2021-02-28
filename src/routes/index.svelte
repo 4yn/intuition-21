@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { link } from "./store.js";
     let errorMessage = "";
-    let successMessage = "Generate SUS URL"
+    let successMessage = "Generate SUS URL";
     let traffic = [];
     let linkCount = 1;
 
@@ -26,13 +26,13 @@
             if (res.status === 200) {
                 // OK
                 errorMessage = "";
-                successMessage = "Link copied!"
+                successMessage = "Link copied!";
 
-                copyToClipboard(`https://p.ress.me/l/${resData.message}`)
+                copyToClipboard(`https://p.ress.me/l/${resData.message}`);
 
                 setTimeout(() => {
-                    successMessage = "Generate SUS URL"
-                }, 5000)
+                    successMessage = "Generate SUS URL";
+                }, 5000);
             } else {
                 errorMessage = resData.error;
             }
@@ -109,10 +109,9 @@
     />
 </svelte:head>
 
-<img src="logo_nobg.png" alt="background image" />
+<img src="logo_nobg.png" alt="background" />
 <h1>Make suspicious links!</h1>
 
-<p />
 <ul>
     <li>Disguise a link as another website by changing its metadata tags!</li>
     <li>Add a custom page title, description and thumbnail.</li>
@@ -122,6 +121,11 @@
     </li>
     <li>Mess with your friends and troll your enemies!</li>
 </ul>
+
+<p>
+    Take a look at our <a href="https://github.com/4yn/intuition-21">Github</a> and 
+    <a href="https://devpost.com/software/sus-url-shortener">Devpost</a>
+</p>
 
 <br />
 

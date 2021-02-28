@@ -76,10 +76,21 @@
 
 <form on:submit|preventDefault={validate}>
     <div class="content">
-        <label for="url">URL</label>
-        <input type="text" id="url" bind:value={$link.url} />
-        <label for="map_url">Actual URL</label>
+        <!-- <label for="url">URL</label>
+        <input type="text" id="url" bind:value={$link.url} /> -->
+        <label for="map_url">Long URL(s)</label>
         <input type="text" id="map_url" bind:value={$link.map_url} />
+        <label for="tl1">TL1</label>
+        <input type="text" id="tl1" bind:value={$link.tl1} />
+        <label for="tl2">TL2</label>
+        <input type="text" id="tl2" bind:value={$link.tl2} />
+        <label for="tl3">TL3</label>
+        <input type="text" id="tl3" bind:value={$link.tl3} />
+        <label for="tl4">TL4</label>
+        <input type="text" id="tl4" bind:value={$link.tl4} />
+        <label for="tl5">TL5</label>
+        <input type="text" id="tl5" bind:value={$link.tl5} />
+
         <label for="title">Title</label>
         <input type="text" id="title" bind:value={$link.title} />
         <label for="body">Body</label>
@@ -96,16 +107,6 @@
             <option value="CYCLE">Loop through all the links</option>
             <option value="RANDOM">Go to a random link in the list</option>
         </select>
-        <label for="tl1">TL1</label>
-        <input type="text" id="tl1" bind:value={$link.tl1} />
-        <label for="tl2">TL2</label>
-        <input type="text" id="tl2" bind:value={$link.tl2} />
-        <label for="tl3">TL3</label>
-        <input type="text" id="tl3" bind:value={$link.tl3} />
-        <label for="tl4">TL4</label>
-        <input type="text" id="tl4" bind:value={$link.tl4} />
-        <label for="tl5">TL5</label>
-        <input type="text" id="tl5" bind:value={$link.tl5} />
         <button class="submitButton" type="submit"> Generate URL </button>
     </div>
 </form>

@@ -2,57 +2,56 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
-async function userTraffic(sess) {
-
-    const nt = await prisma.link.findMany({
+async function listLinks(sess) {
+    const links = await prisma.link.findMany({
         where: {
             creator: sess,
         }
     });
-
-    return nt
+    return links
 }
 
 //RETURNS THE NUMBER OF VISITS TO URL u
-async function getNum(u) {
-
-    const nt = await prisma.user.findMany({
+async function countVisits(url) {
+    const visits = await prisma.visit.findMany({
         where: {
-            link_visited: u,
+            link_visited: url,
         }
     });
-
-    return nt.length
+    return visits.length
 }
 
 export async function get(req, res, next) {
-	// Check DB for link redirecting instructions and user traffic
+    // Gets a list of all of this user's created links and the traffic to these links
+    
+    try {
 
-	const { slug } = req.params;
+        const links = await listLinks(req.sessionID);
 
-	const tt = await userTraffic(req.sessionID)
-	.then((result) => {return result;})
-	.catch(e => {throw e})
-	.finally(async()=>{
-		await prisma.$disconnect()
-	})
+        const data = []
+        for (let link of links) {
+            const visits = await countVisits(link.url)
+            data.push({
+                url: link.url,
+                view: visits
+            })
+        }
 
-    var thisarr = [];
-
-    for (var i = 0; i < tt.length; i++){
-        const ww = await getNum(tt[i].url)
-        .then((result) => {return result;})
-        .catch(e => {throw e})
-        .finally(async()=>{
-            await prisma.$disconnect()
+        res.writeHead(200, {
+            'Content-Type': 'application/json'
         });
-        thisarr.push({"url": tt[i].url, "view": ww});
+        res.end(JSON.stringify(data));
+
+    } catch (err) {
+
+        res.writeHead(400, {
+            'Content-Type': 'application/json'
+        });
+        res.end(JSON.stringify({
+            message: err.message
+        }));
+
+    } finally {
+        await prisma.$disconnect()
     }
-
-    res.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
-
-    res.end(JSON.stringify(thisarr));
-
 }

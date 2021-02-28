@@ -7,11 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
+model Visit {
   id    Int     @id @default(autoincrement())
   session String
   link_visited String?
-  name String?
 }
 
 model Link {
@@ -28,6 +27,11 @@ model Link {
   tl4 String?
   tl5 String?
   creator String?
-  owner User? @relation(fields: [ownerId], references: [id])
-  ownerId Int?
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
 }

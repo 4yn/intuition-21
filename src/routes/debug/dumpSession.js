@@ -6,7 +6,7 @@ export async function get(req, res, next) {
     console.log(req)
     console.log("SESSION")
     console.log(req.session)
-    console.log("HEaDER")
+    console.log("HEADER")
     console.log(req.headers)
     console.log("USER AGENT")
     console.log(req.headers['user-agent'])

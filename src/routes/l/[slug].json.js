@@ -31,7 +31,7 @@ async function numTimeVisited(sess, u) {
 
 	u = getUrl(u);
 
-    const nt = await prisma.user.findMany({
+    const nt = await prisma.visit.findMany({
         where: {
             session: sess,
 			link_visited: u
@@ -47,7 +47,7 @@ async function createUser(sess, u) {
 
 	u = getUrl(u);
 
-    const mm = await prisma.user.create({
+    const mm = await prisma.visit.create({
         data: {
             session: sess,
 			link_visited: u

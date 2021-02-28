@@ -1,17 +1,18 @@
 <script>
-    import { onMount } from 'svelte';
+    import { onMount } from "svelte";
     import { link } from "./store.js";
     let errorMessage = "";
+    let successMessage = "Generate SUS URL"
     let traffic = [];
     let linkCount = 1;
 
     async function validate() {
-        ['map_url', 'tl1', 'tl2', 'tl3', 'tl4', 'tl5'].map((x, i) => {
+        ["map_url", "tl1", "tl2", "tl3", "tl4", "tl5"].map((x, i) => {
             if (i >= linkCount) {
-                $link[x] = ""
+                $link[x] = "";
             }
-        })
-        
+        });
+
         try {
             const res = await fetch("/createLink", {
                 method: "POST",
@@ -19,18 +20,25 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-            })
-            const resData = await res.json()
-            
+            });
+            const resData = await res.json();
+
             if (res.status === 200) {
                 // OK
-                errorMessage = ""
+                errorMessage = "";
+                successMessage = "Link copied!"
+
+                copyToClipboard(`https://p.ress.me/l/${resData.message}`)
+
+                setTimeout(() => {
+                    successMessage = "Generate SUS URL"
+                }, 5000)
             } else {
-                errorMessage = resData.error
+                errorMessage = resData.error;
             }
-            console.log(res)
+            console.log(res);
         } catch (err) {
-            errorMessage = "Server error"
+            errorMessage = "Server error";
         }
 
         await getUserTraffic();
@@ -48,7 +56,45 @@
 
     onMount(async () => {
         await getUserTraffic();
-    })
+    });
+
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand("copy");
+            var msg = successful ? "successful" : "unsuccessful";
+            // console.log("Fallback: Copying text command was " + msg);
+        } catch (err) {
+            // console.error("Fallback: Oops, unable to copy", err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+    function copyToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(
+            function () {
+                // console.log("Async: Copying to clipboard was successful!");
+            },
+            function (err) {
+                // console.error("Async: Could not copy text: ", err);
+            }
+        );
+    }
 </script>
 
 <svelte:head>
@@ -89,14 +135,20 @@
         <div class="form-subheader">Link Preview Options</div>
         <div class="form-explain">
             <p>
-                Change how your link will look in rich text / embedded previews on various messaging apps.
+                Change how your link will look in rich text / embedded previews
+                on various messaging apps.
             </p>
         </div>
 
         <label for="title">Title</label>
-        <input type="text" maxlength=300 id="title" bind:value={$link.title} />
+        <input
+            type="text"
+            maxlength="300"
+            id="title"
+            bind:value={$link.title}
+        />
         <label for="body">Body</label>
-        <input type="text" maxlength=300 id="body" bind:value={$link.body} />
+        <input type="text" maxlength="300" id="body" bind:value={$link.body} />
         <label for="thumbnail_link">Thumbnail</label>
         <input
             type="text"
@@ -104,67 +156,109 @@
             bind:value={$link.thumbnail_link}
         />
 
-        <div class="form-subfooter"></div>
+        <div class="form-subfooter" />
 
         <div class="form-subheader">Destination Options</div>
 
         <div class="form-explain">
             <p>
                 Set one or more links to redirect to.
-                <br/>
-                If you have more than one link, you can decide if your <strike>victims</strike> friends will be directed to all the links in order or randomly! Pick up to 6 links.
+                <br />
+                If you have more than one link, you can decide if your
+                <strike>victims</strike> friends will be directed to all the links
+                in order or randomly! Pick up to 6 links.
             </p>
         </div>
 
         <label for="map_url">Long URL(s)</label>
-        <input type="text" maxlength=300 id="map_url" bind:value={$link.map_url} />
+        <input
+            type="text"
+            maxlength="300"
+            id="map_url"
+            bind:value={$link.map_url}
+        />
 
         {#if linkCount > 1}
-        <label for="tl1"></label>
-        <input type="text" maxlength=300 id="tl1" bind:value={$link.tl1} />
+            <label for="tl1" />
+            <input
+                type="text"
+                maxlength="300"
+                id="tl1"
+                bind:value={$link.tl1}
+            />
         {/if}
         {#if linkCount > 2}
-        <label for="tl2"></label>
-        <input type="text" maxlength=300 id="tl2" bind:value={$link.tl2} />
+            <label for="tl2" />
+            <input
+                type="text"
+                maxlength="300"
+                id="tl2"
+                bind:value={$link.tl2}
+            />
         {/if}
         {#if linkCount > 3}
-        <label for="tl3"></label>
-        <input type="text" maxlength=300 id="tl3" bind:value={$link.tl3} />
+            <label for="tl3" />
+            <input
+                type="text"
+                maxlength="300"
+                id="tl3"
+                bind:value={$link.tl3}
+            />
         {/if}
         {#if linkCount > 4}
-        <label for="tl4"></label>
-        <input type="text" maxlength=300 id="tl4" bind:value={$link.tl4} />
+            <label for="tl4" />
+            <input
+                type="text"
+                maxlength="300"
+                id="tl4"
+                bind:value={$link.tl4}
+            />
         {/if}
         {#if linkCount > 5}
-        <label for="tl5"></label>
-        <input type="text" maxlength=300 id="tl5" bind:value={$link.tl5} />
+            <label for="tl5" />
+            <input
+                type="text"
+                maxlength="300"
+                id="tl5"
+                bind:value={$link.tl5}
+            />
         {/if}
-        <label for="adjust-link"></label>
+        <label for="adjust-link" />
         <div id="adjust-link">
             {#if linkCount !== 6}
-                <button type="button" on:click="{() => {linkCount += 1}}">Add another link to the redirect chain</button>
+                <button
+                    type="button"
+                    on:click={() => {
+                        linkCount += 1;
+                    }}>Add another link to the redirect chain</button
+                >
             {/if}
             {#if linkCount !== 1 && linkCount !== 6}
-                <br/>
+                <br />
             {/if}
             {#if linkCount !== 1}
-                <button type="button" on:click="{() => {linkCount -= 1}}">Remove a link from the redirect chain</button>
+                <button
+                    type="button"
+                    on:click={() => {
+                        linkCount -= 1;
+                    }}>Remove a link from the redirect chain</button
+                >
             {/if}
-            
         </div>
 
         {#if linkCount !== 1}
-        <label for="routing">Routing</label>
-        <select name="routing" id="routing" bind:value={$link.routing}>
-            <option value="STOP">Stop at the last link</option>
-            <option value="CYCLE">Keep looping through all the links</option>
-            <option value="RANDOM">Go to a random link in the list</option>
-        </select>
+            <label for="routing">Routing</label>
+            <select name="routing" id="routing" bind:value={$link.routing}>
+                <option value="STOP">Stop at the last link</option>
+                <option value="CYCLE">Keep looping through all the links</option
+                >
+                <option value="RANDOM">Go to a random link in the list</option>
+            </select>
         {/if}
 
-        <div class="form-subfooter"></div>
-        
-        <button class="submitButton" type="submit"> Generate URL </button>
+        <div class="form-subfooter" />
+
+        <button class="submitButton" type="submit">{successMessage}</button>
     </div>
 </form>
 
@@ -183,10 +277,16 @@
 {#if traffic.length == 0}
     <p class="centered">No links yet, why not create one now!</p>
 {:else}
-    <ul>
+    <p>Click on a link to copy!</p>
+    <ul id="link-list">
         {#each traffic as { url, view }}
             <li>
-                <a>http://p.ress.me/l/{url}</a>: {view} view{view === 1 ? '' : 's'}
+                <span
+                    class="link-copy"
+                    on:click={() => {
+                        copyToClipboard(`htttps://p.ress.me/l/${url}`);
+                    }}>https://p.ress.me/l/{url}</span
+                >: {view} view{view === 1 ? "" : "s"}
             </li>
         {/each}
     </ul>
@@ -254,7 +354,8 @@
         margin-bottom: 0.5rem;
     }
 
-    .content input, .content select {
+    .content input,
+    .content select {
         border-radius: 0.5rem;
         border: 2px solid rgba(0, 0, 0, 0.3);
         padding: 0.25rem;
@@ -274,12 +375,22 @@
         width: 100%;
         border: none;
         text-align: center;
-        color: #FFFFFF;
-        background-color: #D1603D;
+        color: #ffffff;
+        background-color: #d1603d;
     }
 
     .error {
         color: purple;
+    }
+
+    #link-list li {
+        list-style-type: none;
+    }
+
+    #link-list .link-copy {
+        text-decoration: underline;
+        color: #6c91bf;
+        cursor: pointer;
     }
 
     footer {

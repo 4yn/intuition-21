@@ -48,7 +48,7 @@ export async function get(req, res, next) {
 		}
 		const visitCount = await countVisits(slug, req.sessionID);
 
-		console.log(visitCount);
+		// console.log(visitCount);
 
 		await logVisit(slug, req.sessionID)
 

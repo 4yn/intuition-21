@@ -84,14 +84,18 @@
         <input type="text" id="title" bind:value={$link.title} />
         <label for="body">Body</label>
         <input type="text" id="body" bind:value={$link.body} />
-        <label for="thumbnail_link">Thumbnail Link</label>
+        <label for="thumbnail_link">Thumbnail</label>
         <input
             type="text"
             id="thumbnail_link"
             bind:value={$link.thumbnail_link}
         />
         <label for="routing">Routing</label>
-        <input type="text" id="routing" bind:value={$link.routing} />
+        <select name="routing" id="routing" bind:value={$link.routing}>
+            <option value="STOP">Stop at the last link</option>
+            <option value="CYCLE">Loop through all the links</option>
+            <option value="RANDOM">Go to a random link in the list</option>
+        </select>
         <label for="tl1">TL1</label>
         <input type="text" id="tl1" bind:value={$link.tl1} />
         <label for="tl2">TL2</label>
@@ -102,8 +106,8 @@
         <input type="text" id="tl4" bind:value={$link.tl4} />
         <label for="tl5">TL5</label>
         <input type="text" id="tl5" bind:value={$link.tl5} />
+        <button class="submitButton" type="submit"> Generate URL </button>
     </div>
-    <button class="submitButton" type="submit"> Generate URL </button>
 </form>
 
 {#if !!errorMessage}
@@ -119,12 +123,12 @@
 
 <!-- List of previous links + traffic to links -->
 {#if traffic.length == 0}
-    <p class="centered">No links yet, create one now!</p>
+    <p class="centered">No links yet, why not create one now!</p>
 {:else}
     <ul>
         {#each traffic as { url, view }}
             <li>
-                {url}: {view}
+                {url}: {view} view{view === 1 ? '' : 's'}
             </li>
         {/each}
     </ul>
@@ -169,15 +173,31 @@
     }
 
     .content {
+        font-size: 1.5rem;
         display: grid;
         grid-template-columns: 20% 80%;
-        grid-column-gap: 10px;
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
+
+    .content input, .content select {
+        border-radius: 0.5rem;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        padding: 0.25rem;
+        font-size: 1.25rem;
     }
 
     .submitButton {
-        width: 40%;
-        margin-left: 30%;
-        margin-right: 30%;
+        grid-column: 1 / 3;
+        margin: 1rem 0rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 2rem;
+        width: 100%;
+        border: none;
+        text-align: center;
+        color: #FFFFFF;
+        background-color: #D1603D;
     }
 
     .error {
